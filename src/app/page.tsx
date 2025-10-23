@@ -4,7 +4,8 @@ import { useState } from 'react';
 import styles from './page.module.css';
 import { AnalysisResponse } from '@/lib/types';
 import { AudioUploader } from '@/components/AudioUploader/AudioUploader';
-import { AudioPlayer } from '@/components/AudioPlayer/AudioPlayer'; // 1. IMPORT
+import { AudioPlayer } from '@/components/AudioPlayer/AudioPlayer';
+import { ResultsDisplay } from '@/components/ResultsDisplay/ResultsDisplay'; // 1. IMPORT
 
 export default function Home() {
   // State for the application
@@ -71,20 +72,7 @@ export default function Home() {
             disabled={isLoading}
           />
 
-          {/* 2. REPLACE the old placeholder div... */}
-          {/*
-          <div className={styles.playerPlaceholder}>
-            <p>
-              <strong>Selected file:</strong> {file.name}
-            </p>
-            <audio controls src={URL.createObjectURL(file)} />
-          </div>
-          */}
-
-          {/* ...WITH the new AudioPlayer component */}
           {file && <AudioPlayer file={file} />}
-          {/* END OF REPLACEMENT */}
-
 
           <button
             onClick={handleSubmit}
@@ -102,12 +90,20 @@ export default function Home() {
           {isLoading && <p>Loading feedback...</p>}
           {error && <p className={styles.errorText}>Error: {error}</p>}
 
+          {/* 2. REPLACE the old placeholder... */}
+          {/*
           {analysis && (
             <div className={styles.resultsPlaceholder}>
               <h3>Results:</h3>
               <pre>{JSON.stringify(analysis, null, 2)}</pre>
             </div>
           )}
+          */}
+
+          {/* ...WITH the new ResultsDisplay component */}
+          {analysis && <ResultsDisplay analysis={analysis} />}
+          {/* END OF REPLACEMENT */}
+
         </div>
       </div>
     </main>
