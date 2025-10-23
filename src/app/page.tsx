@@ -3,7 +3,8 @@
 import { useState } from 'react';
 import styles from './page.module.css';
 import { AnalysisResponse } from '@/lib/types';
-import { AudioUploader } from '@/components/AudioUploader/AudioUploader'; // 1. IMPORT
+import { AudioUploader } from '@/components/AudioUploader/AudioUploader';
+import { AudioPlayer } from '@/components/AudioPlayer/AudioPlayer'; // 1. IMPORT
 
 export default function Home() {
   // State for the application
@@ -12,19 +13,12 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  /**
-   * 2. This is the new handler that will be passed
-   * to our AudioUploader component.
-   */
   const handleFileSelect = (selectedFile: File) => {
     setFile(selectedFile);
     setAnalysis(null); // Clear previous analysis
     setError(null);
   };
 
-  /**
-   * Handles the submission to the API (this function remains the same)
-   */
   const handleSubmit = async () => {
     if (!file) {
       setError('Please upload an audio file first.');
@@ -72,24 +66,25 @@ export default function Home() {
         <div className={styles.uploaderSection}>
           <h2>1. Upload Audio</h2>
 
-          {/* 3. REPLACE the old <input> with the new component */}
           <AudioUploader
             onFileSelect={handleFileSelect}
             disabled={isLoading}
           />
+
+          {/* 2. REPLACE the old placeholder div... */}
+          {/*
+          <div className={styles.playerPlaceholder}>
+            <p>
+              <strong>Selected file:</strong> {file.name}
+            </p>
+            <audio controls src={URL.createObjectURL(file)} />
+          </div>
+          */}
+
+          {/* ...WITH the new AudioPlayer component */}
+          {file && <AudioPlayer file={file} />}
           {/* END OF REPLACEMENT */}
 
-          {/* This is a simple placeholder. We will build a
-            proper AudioPlayer component next.
-          */}
-          {file && (
-            <div className={styles.playerPlaceholder}>
-              <p>
-                <strong>Selected file:</strong> {file.name}
-              </p>
-              <audio controls src={URL.createObjectURL(file)} />
-            </div>
-          )}
 
           <button
             onClick={handleSubmit}
@@ -107,13 +102,10 @@ export default function Home() {
           {isLoading && <p>Loading feedback...</p>}
           {error && <p className={styles.errorText}>Error: {error}</p>}
 
-          {/* This is a simple placeholder. We will build a
-            proper ResultsDisplay component next [cite: 14-16].
-          */}
           {analysis && (
             <div className={styles.resultsPlaceholder}>
               <h3>Results:</h3>
-              <pre>{JSON.stringify(analysis, null, 2)}</pre>This is a simple placeholder.
+              <pre>{JSON.stringify(analysis, null, 2)}</pre>
             </div>
           )}
         </div>

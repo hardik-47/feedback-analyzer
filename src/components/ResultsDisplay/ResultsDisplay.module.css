@@ -1,0 +1,80 @@
+.resultsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.feedbackSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.feedbackItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.feedbackItem label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.feedbackItem textarea {
+  width: 100%;
+  padding: 0.75rem;
+  font-family: inherit;
+  font-size: 0.9rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #fcfcfc;
+  resize: vertical;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid #eaeaea;
+}
+
+.scoresSection h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.scoreList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+/* Make scores two-column on wider screens */
+@media (min-width: 900px) {
+  .scoreList {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.scoreItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background-color: #f7f7f7;
+  border: 1px solid #eee;
+  border-radius: 6px;
+}
+
+.scoreName {
+  font-weight: 500;
+  color: #444;
+}
+
+.scoreValue {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #0070f3;
+}
