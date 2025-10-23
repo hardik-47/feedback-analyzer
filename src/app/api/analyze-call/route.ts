@@ -8,23 +8,18 @@ import {
 import { AnalysisResponse } from '@/lib/types';
 import { CALL_PARAMETERS, Parameter } from '@/lib/parameters';
 
-// 1. Initialize Deepgram Client
+//  Deepgram Client
 const deepgram: DeepgramClient = createClient(
   process.env.DEEPGRAM_API_KEY || ''
 );
 
-// 2. Initialize Google Gemini Client
+//  Google Gemini Client
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
 const geminiModel = genAI.getGenerativeModel({
   model: 'gemini-2.5-flash', // Use the fast and capable Flash model
 });
 
-/**
- * REAL API Route using a FREE STACK (Deepgram + Google Gemini)
- *
- * 1. Transcription: Uses Deepgram to transcribe the audio.
- * 2. Analysis: Uses Google Gemini to analyze the transcript.
- */
+
 export async function POST(request: Request) {
   try {
     const formData = await request.formData();
@@ -37,9 +32,9 @@ export async function POST(request: Request) {
       );
     }
 
-    // --- STEP 1: Transcribe the audio file using Deepgram ---
+    //Transcribing the audio file using Deepgram 
 
-    // Convert the File to a Buffer for Deepgram
+    
     const audioBuffer = Buffer.from(await file.arrayBuffer());
 
     const { result, error: deepgramError } =
@@ -58,10 +53,10 @@ export async function POST(request: Request) {
       throw new Error('Transcription failed, no text returned.');
     }
 
-    // --- STEP 2: Analyze the transcript using Google Gemini ---
+    // Analyzing the transcript using Google Gemini
     const analysisPrompt = createAnalysisPrompt(transcriptText, CALL_PARAMETERS);
 
-    // Configuration to ensure we don't block harmless content
+   
     const safetySettings = [
       {
         category: HarmCategory.HARM_CATEGORY_HARASSMENT,
@@ -85,7 +80,7 @@ export async function POST(request: Request) {
       contents: [{ role: 'user', parts: [{ text: analysisPrompt }] }],
       safetySettings,
       generationConfig: {
-        responseMimeType: 'application/json', // Enforce JSON output!
+        responseMimeType: 'application/json', 
       },
     });
 
@@ -96,7 +91,7 @@ export async function POST(request: Request) {
       throw new Error('Google Gemini AI failed to return JSON content.');
     }
 
-    // Parse the JSON string from the AI into our TypeScript type
+    // Parsing the JSON string from the AI into our TypeScript type
     const parsedAnalysis = JSON.parse(analysisJson) as AnalysisResponse;
 
     return NextResponse.json(parsedAnalysis);
@@ -109,10 +104,7 @@ export async function POST(request: Request) {
   }
 }
 
-/**
- * Helper function to build the system prompt for the AI.
- * This prompt works for Gemini as well.
- */
+
 function createAnalysisPrompt(
   transcript: string,
   parameters: Parameter[]

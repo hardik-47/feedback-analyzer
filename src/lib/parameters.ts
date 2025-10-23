@@ -1,6 +1,5 @@
 /**
- * Defines the metadata for each call evaluation parameter
- * as specified in the assignment PDF [cite: 55-63].
+ * we here defines the metadata for each call evaluation parameter
  */
 
 export interface Parameter {
@@ -11,8 +10,7 @@ export interface Parameter {
   inputType: 'PASS_FAIL' | 'SCORE';
 }
 
-// We use 'keyof AnalysisScores' in the key property
-// to ensure it matches our types.
+
 export const CALL_PARAMETERS: Parameter[] = [
   {
     key: 'greeting',

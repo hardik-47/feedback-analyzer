@@ -19,7 +19,7 @@ export function AudioUploader({
     if (file && (file.type === 'audio/mpeg' || file.type === 'audio/wav')) {
       onFileSelect(file);
     } else {
-      // You could pass an error handler prop, but for now, an alert is fine
+     
       alert('Invalid file type. Please upload an MP3 or WAV file.');
     }
   };
@@ -62,7 +62,7 @@ export function AudioUploader({
     }
   };
 
-  // Combine CSS classes conditionally
+ 
   const uploaderClasses = [
     styles.uploader,
     isDragOver ? styles.dragOver : '',
@@ -84,7 +84,7 @@ export function AudioUploader({
         ref={fileInputRef}
         onChange={handleFileChange}
         accept="audio/mp3, audio/wav"
-        style={{ display: 'none' }} // Hide the input
+        style={{ display: 'none' }} 
         disabled={disabled}
       />
       <p>

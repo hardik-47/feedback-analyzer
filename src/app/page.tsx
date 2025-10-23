@@ -5,10 +5,10 @@ import styles from './page.module.css';
 import { AnalysisResponse } from '@/lib/types';
 import { AudioUploader } from '@/components/AudioUploader/AudioUploader';
 import { AudioPlayer } from '@/components/AudioPlayer/AudioPlayer';
-import { ResultsDisplay } from '@/components/ResultsDisplay/ResultsDisplay'; // 1. IMPORT
+import { ResultsDisplay } from '@/components/ResultsDisplay/ResultsDisplay'; 
 
 export default function Home() {
-  // State for the application
+
   const [file, setFile] = useState<File | null>(null);
   const [analysis, setAnalysis] = useState<AnalysisResponse | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -16,7 +16,7 @@ export default function Home() {
 
   const handleFileSelect = (selectedFile: File) => {
     setFile(selectedFile);
-    setAnalysis(null); // Clear previous analysis
+    setAnalysis(null); 
     setError(null);
   };
 
@@ -86,19 +86,9 @@ export default function Home() {
           {isLoading && <p>Loading feedback...</p>}
           {error && <p className={styles.errorText}>Error: {error}</p>}
 
-          {/* 2. REPLACE the old placeholder... */}
-          {/*
-          {analysis && (
-            <div className={styles.resultsPlaceholder}>
-              <h3>Results:</h3>
-              <pre>{JSON.stringify(analysis, null, 2)}</pre>
-            </div>
-          )}
-          */}
-
-          {/* ...WITH the new ResultsDisplay component */}
+        
           {analysis && <ResultsDisplay analysis={analysis} />}
-          {/* END OF REPLACEMENT */}
+          
 
         </div>
       </div>

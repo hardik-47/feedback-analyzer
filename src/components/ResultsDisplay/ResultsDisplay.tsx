@@ -9,13 +9,13 @@ interface ResultsDisplayProps {
 export function ResultsDisplay({ analysis }: ResultsDisplayProps) {
   const { scores, overallFeedback, observation } = analysis;
 
-  // Calculate the total achieved score
+  
   const totalAchievedScore = Object.values(scores).reduce(
     (sum, score) => sum + score,
     0
   );
 
-  // Calculate the total possible score from our parameters
+
   const totalPossibleScore = CALL_PARAMETERS.reduce(
     (sum, param) => sum + param.weight,
     0
@@ -47,14 +47,14 @@ export function ResultsDisplay({ analysis }: ResultsDisplayProps) {
 
       <hr className={styles.divider} />
 
-      {/* 2. Scores [cite: 15] */}
+      {/* Scores*/}
       <div className={styles.scoresSection}>
         <h3>
           Evaluation Scores (Total: {totalAchievedScore} / {totalPossibleScore})
         </h3>
         <ul className={styles.scoreList}>
           {CALL_PARAMETERS.map((param) => {
-            // Get the score for this parameter from the analysis object
+            // we here get the score for this parameter from the analysis object
             const score = scores[param.key as keyof AnalysisScores];
 
             return (

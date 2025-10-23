@@ -12,20 +12,19 @@ export function AudioPlayer({ file }: AudioPlayerProps) {
   const [audioSrc, setAudioSrc] = useState('');
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  // Create an object URL when the file prop changes
+  
   useEffect(() => {
-    // Create a new object URL
+    
     const objectUrl = URL.createObjectURL(file);
     setAudioSrc(objectUrl);
-    setIsPlaying(false); // Reset play state
+    setIsPlaying(false); 
 
-    // Cleanup function to revoke the object URL
-    // This is crucial to prevent memory leaks
+    
     return () => {
       URL.revokeObjectURL(objectUrl);
       setAudioSrc(''); // Clear the src
     };
-  }, [file]); // Re-run only when the file object itself changes
+  }, [file]); 
 
   const togglePlayPause = () => {
     if (audioRef.current) {
@@ -38,7 +37,7 @@ export function AudioPlayer({ file }: AudioPlayerProps) {
     }
   };
 
-  // Sync our state if the audio playback ends naturally
+ 
   const handlePlaybackEnded = () => {
     setIsPlaying(false);
   };
@@ -55,7 +54,7 @@ export function AudioPlayer({ file }: AudioPlayerProps) {
         <audio
           ref={audioRef}
           src={audioSrc}
-          controls // Show native browser controls (timeline, volume)
+          controls 
           onEnded={handlePlaybackEnded}
           className={styles.audioElement}
         />

@@ -1,6 +1,4 @@
-/* Basic styles using CSS Modules 
-  This ensures our styles are scoped to page.tsx
-*/
+
 
 .main {
   max-width: 1200px;
@@ -9,8 +7,7 @@
   border:2px solid;
   border-color: #c3def7;
   border-radius: 20px;
-  /* font-family:'Segoe UI','Open Sans', 'Helvetica Neue', sans-serif;
-   */
+  
    font-family:Arial, Helvetica, sans-serif;
    background: #c3def7;
    background: linear-gradient(90deg, rgba(195, 222, 247, 1) 0%, rgba(216, 235, 221, 1) 29%, rgba(197, 240, 200, 1) 100%);
@@ -35,7 +32,7 @@
   gap: 2rem;
 }
 
-/* Make it responsive on smaller screens */
+
 @media (max-width: 768px) {
   .content {
     grid-template-columns: 1fr;

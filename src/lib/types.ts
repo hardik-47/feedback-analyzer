@@ -1,7 +1,5 @@
 /**
- * Defines the structure of the JSON response we expect
- * from the /api/analyze-call route.
- * Based on the assignment PDF 
+ *we here define the structure of the JSON response 
  */
 export interface AnalysisScores {
   greeting: number;
