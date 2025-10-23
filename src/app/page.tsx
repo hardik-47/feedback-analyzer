@@ -56,10 +56,6 @@ export default function Home() {
     <main className={styles.main}>
       <header className={styles.header}>
         <h1>AI Call Feedback System</h1>
-        <p>
-          Upload a call recording to get instant feedback from our AI agent
-         .
-        </p>
       </header>
 
       <div className={styles.content}>

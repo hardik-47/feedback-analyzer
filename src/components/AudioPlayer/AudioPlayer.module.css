@@ -27,7 +27,7 @@
   font-size: 0.9rem;
   font-weight: bold;
   color: white;
-  background-color: #0070f3;
+  background-color: #2c0dd8;
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -36,7 +36,7 @@
 }
 
 .playButton:hover {
-  background-color: #005bb5;
+  background-color: #14057a;
 }
 
 .audioElement {
