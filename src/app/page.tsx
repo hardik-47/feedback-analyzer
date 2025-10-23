@@ -59,7 +59,7 @@ export default function Home() {
       </header>
 
       <div className={styles.content}>
-        {/* --- SECTION 1: UPLOAD & PROCESS --- */}
+        {/* upload and process part */}
         <div className={styles.uploaderSection}>
           <h2>1. Upload Audio</h2>
 
@@ -79,7 +79,7 @@ export default function Home() {
           </button>
         </div>
 
-        {/* --- SECTION 2: RESULTS --- */}
+        {/* this is the result */}
         <div className={styles.resultsSection}>
           <h2>2. View Feedback</h2>
 

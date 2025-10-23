@@ -23,7 +23,7 @@ export function ResultsDisplay({ analysis }: ResultsDisplayProps) {
 
   return (
     <div className={styles.resultsContainer}>
-      {/* 1. Text Fields  */}
+      {/*Text Fields  */}
       <div className={styles.feedbackSection}>
         <div className={styles.feedbackItem}>
           <label htmlFor="overallFeedback">Overall Feedback</label>

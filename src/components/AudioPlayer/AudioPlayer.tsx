@@ -22,7 +22,7 @@ export function AudioPlayer({ file }: AudioPlayerProps) {
     
     return () => {
       URL.revokeObjectURL(objectUrl);
-      setAudioSrc(''); // Clear the src
+      setAudioSrc(''); 
     };
   }, [file]); 
 
