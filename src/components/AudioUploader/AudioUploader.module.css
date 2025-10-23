@@ -1,0 +1,47 @@
+.uploader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  background-color: #fafafa;
+  color: #555;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-align: center;
+}
+
+.uploader p {
+  margin: 0.25rem 0;
+}
+
+.fileTypes {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.uploader:hover {
+  border-color: #0070f3;
+  background-color: #f0f8ff;
+}
+
+.dragOver {
+  border-color: #0070f3;
+  border-style: solid;
+  background-color: #f0f8ff;
+  transform: scale(1.02);
+}
+
+.disabled {
+  background-color: #f0f0f0;
+  border-color: #ddd;
+  color: #aaa;
+  cursor: not-allowed;
+}
+
+.disabled:hover {
+  border-color: #ddd;
+  background-color: #f0f0f0;
+}

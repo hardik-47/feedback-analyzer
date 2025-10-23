@@ -1,0 +1,45 @@
+.playerContainer {
+  margin-top: 1.5rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  background-color: #fff;
+}
+
+.fileName {
+  margin: 0 0 0.75rem 0;
+  font-size: 0.9rem;
+  color: #333;
+  /* Truncate long file names */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.controlsWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.playButton {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: white;
+  background-color: #0070f3;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  min-width: 60px; /* Give it a fixed width */
+  transition: background-color 0.2s;
+}
+
+.playButton:hover {
+  background-color: #005bb5;
+}
+
+.audioElement {
+  flex-grow: 1; /* Make the audio controls take the remaining space */
+  width: 100%;
+}

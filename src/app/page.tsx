@@ -1,8 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import styles from './page.module.css'; // We will create this next
+import styles from './page.module.css';
 import { AnalysisResponse } from '@/lib/types';
+import { AudioUploader } from '@/components/AudioUploader/AudioUploader'; // 1. IMPORT
 
 export default function Home() {
   // State for the application
@@ -12,19 +13,17 @@ export default function Home() {
   const [error, setError] = useState<string | null>(null);
 
   /**
-   * Handles the file selection from a simple input.
-   * We will replace this with a drag-and-drop component later.
+   * 2. This is the new handler that will be passed
+   * to our AudioUploader component.
    */
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length > 0) {
-      setFile(e.target.files[0]);
-      setAnalysis(null); // Clear previous analysis
-      setError(null);
-    }
+  const handleFileSelect = (selectedFile: File) => {
+    setFile(selectedFile);
+    setAnalysis(null); // Clear previous analysis
+    setError(null);
   };
 
   /**
-   * Handles the submission to the API [cite: 13]
+   * Handles the submission to the API (this function remains the same)
    */
   const handleSubmit = async () => {
     if (!file) {
@@ -64,6 +63,7 @@ export default function Home() {
         <h1>AI Call Feedback System</h1>
         <p>
           Upload a call recording to get instant feedback from our AI agent
+         .
         </p>
       </header>
 
@@ -71,18 +71,16 @@ export default function Home() {
         {/* --- SECTION 1: UPLOAD & PROCESS --- */}
         <div className={styles.uploaderSection}>
           <h2>1. Upload Audio</h2>
-          {/* This is a simple placeholder. We will build a
-            proper Drag/Drop component next[cite: 11].
-          */}
-          <input
-            type="file"
-            accept="audio/mp3, audio/wav"
-            onChange={handleFileChange}
+
+          {/* 3. REPLACE the old <input> with the new component */}
+          <AudioUploader
+            onFileSelect={handleFileSelect}
             disabled={isLoading}
           />
+          {/* END OF REPLACEMENT */}
 
           {/* This is a simple placeholder. We will build a
-            proper AudioPlayer component next[cite: 12].
+            proper AudioPlayer component next.
           */}
           {file && (
             <div className={styles.playerPlaceholder}>
@@ -115,7 +113,7 @@ export default function Home() {
           {analysis && (
             <div className={styles.resultsPlaceholder}>
               <h3>Results:</h3>
-              <pre>{JSON.stringify(analysis, null, 2)}</pre>
+              <pre>{JSON.stringify(analysis, null, 2)}</pre>This is a simple placeholder.
             </div>
           )}
         </div>
